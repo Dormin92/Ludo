@@ -16,6 +16,7 @@ AGiti::AGiti()
 void AGiti::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }
 
 // Called every frame
