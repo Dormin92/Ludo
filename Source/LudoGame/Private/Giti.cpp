@@ -9,7 +9,7 @@
 AGiti::AGiti()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 }
 
 // Called when the game starts or when spawned
@@ -19,16 +19,13 @@ void AGiti::BeginPlay()
 	
 }
 
-// Called every frame
-void AGiti::Tick(float DeltaTime)
+void AGiti::Tick(float DeltaSeconds)
 {
-	Super::Tick(DeltaTime);
-	
+	Super::Tick(DeltaSeconds);
 }
 
 void AGiti::MoveGiti_Implementation(FVector NewLocation)
 {
-	UE_LOG(LogTemp, Warning, TEXT("MoveGiti called"));
 	SetActorLocation(NewLocation);
 }
 

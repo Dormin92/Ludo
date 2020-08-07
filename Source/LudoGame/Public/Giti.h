@@ -15,8 +15,7 @@ public:
 	// Sets default values for this pawn's properties
 	AGiti();
 
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void Tick(float DeltaSeconds);
 
 	UFUNCTION(Server, Reliable)
 	void MoveGiti(FVector NewLocation);
