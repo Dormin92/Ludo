@@ -4,9 +4,9 @@
 #include "DiceSprite.h"
 
 
-void ADiceSprite::DiceSprite()
+ADiceSprite::ADiceSprite()
 {
-	OnClicked.AddDynamic(this, &ADiceSprite::RollDice);
+	//OnClicked.AddDynamic(this, &ADiceSprite::RollDice);
 }
 
 void ADiceSprite::RollDice(UPrimitiveComponent* ClickedComponent, FKey ButtonPressed)

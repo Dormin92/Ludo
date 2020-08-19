@@ -14,7 +14,7 @@ class LUDOGAME_API ADiceSprite : public APaperSpriteActor
 {
 	GENERATED_BODY()
 public:
-	DiceSprite();
+	ADiceSprite();
 
 	UFUNCTION()
 	void RollDice(UPrimitiveComponent* ClickedComponent, FKey ButtonPressed);
