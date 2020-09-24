@@ -3,9 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PaperSpriteComponent.h"
+#include <PaperSpriteComponent.h>
 #include "GitiSpriteComponent.generated.h"
-#include <Paper2D\Classes\PaperSpriteActor.h>
 
 /**
  * 
@@ -15,7 +14,7 @@ class LUDOGAME_API UGitiSpriteComponent : public UPaperSpriteComponent
 {
 	GENERATED_BODY()
 public:
-	APaperSpriteActor* DiceSprites[6];
+
 
 
 	UGitiSpriteComponent();

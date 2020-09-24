@@ -6,9 +6,7 @@
 #include "PaperSpriteActor.h"
 #include "DiceSprite.generated.h"
 
-/**
- * 
- */
+class UPaperSprite;
 UCLASS()
 class LUDOGAME_API ADiceSprite : public APaperSpriteActor
 {
@@ -16,6 +14,11 @@ class LUDOGAME_API ADiceSprite : public APaperSpriteActor
 public:
 	ADiceSprite();
 
-	UFUNCTION()
-	void RollDice(UPrimitiveComponent* ClickedComponent, FKey ButtonPressed);
+	UPROPERTY(EditAnywhere)
+	TArray<UPaperSprite*> DiceArray;
+
+	UPaperSpriteComponent* CurrentDiceSprite;
+
+	UFUNCTION(NetMulticast, Reliable)
+	void ChangeSprite(int DiceSide);
 };

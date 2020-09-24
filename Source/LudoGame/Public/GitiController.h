@@ -7,6 +7,7 @@
 #include "GitiController.generated.h"
 
 class AGiti;
+class ADiceSprite;
 
 UCLASS()
 class LUDOGAME_API AGitiController : public APlayerController
@@ -16,10 +17,17 @@ class LUDOGAME_API AGitiController : public APlayerController
 public:
 	virtual void SetupInputComponent() override;
 
+	UFUNCTION(Server, Reliable)
+	void RollDiceOnServer(ADiceSprite* DiceToRoll);
+
 private:
+	ADiceSprite* Dice1 = nullptr;
+	ADiceSprite* Dice2 = nullptr;
+
 	virtual void BeginPlay() override;
 	AGiti* GitiGrabbed = nullptr;
 	void MouseGrabGiti(float value);
 	void TouchGrabGiti(float value);
+	void TouchDice();
 	virtual bool InputTouch(uint32 Handle, ETouchType::Type Type, const FVector2D& TouchLocation, float Force, FDateTime DeviceTimestamp, uint32 TouchpadIndex) override;
 };

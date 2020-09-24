@@ -2,14 +2,17 @@
 
 
 #include "DiceSprite.h"
+#include <PaperSpriteComponent.h>
 
 
 ADiceSprite::ADiceSprite()
 {
+	CurrentDiceSprite = FindComponentByClass<UPaperSpriteComponent>();
 	//OnClicked.AddDynamic(this, &ADiceSprite::RollDice);
 }
 
-void ADiceSprite::RollDice(UPrimitiveComponent* ClickedComponent, FKey ButtonPressed)
+void ADiceSprite::ChangeSprite_Implementation(int DiceSide)
 {
 
+	CurrentDiceSprite->SetSprite(DiceArray[DiceSide]);
 }
