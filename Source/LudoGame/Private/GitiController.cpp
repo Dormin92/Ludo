@@ -4,6 +4,7 @@
 #include "GitiController.h"
 #include "DiceSprite.h"
 #include "Giti.h"
+#include <TimerManager.h>
 
 void AGitiController::BeginPlay()
 {
@@ -89,16 +90,24 @@ void AGitiController::TouchDice()
 	{
 		//GEngine->AddOnScreenDebugMessage(1, 3.0f, FColor::Blue, OutHit.Actor->GetName());
 		ADiceSprite* Dice = (ADiceSprite*)OutHit.GetActor();
-		RollDiceOnServer(Dice);
-		
+
+		FTimerDelegate DiceRollDelegate;
+		DiceRollDelegate.BindUFunction(this, FName("RollDiceOnServer"), Dice);
+		GetWorldTimerManager().SetTimer(MemberTimerHandle, DiceRollDelegate, 0.25f, true);
+		FTimerHandle StopTimerTimer;
+		GetWorldTimerManager().SetTimer(StopTimerTimer, this, &AGitiController::StopLoop, 0.1f, false, 2.0f);
 	}
 }
 
 void AGitiController::RollDiceOnServer_Implementation(ADiceSprite* DiceToRoll)
 {
-
 	int DiceSide = FMath::RandRange(0, 5);
 	DiceToRoll->ChangeSprite(DiceSide);
+}
+
+void AGitiController::StopLoop_Implementation()
+{
+	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
 }
 
 bool AGitiController::InputTouch(uint32 Handle, ETouchType::Type Type, const FVector2D& TouchLocation, float Force, FDateTime DeviceTimestamp, uint32 TouchpadIndex)

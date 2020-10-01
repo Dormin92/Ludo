@@ -16,14 +16,14 @@ class LUDOGAME_API AGitiController : public APlayerController
 
 public:
 	virtual void SetupInputComponent() override;
-
+	FTimerHandle MemberTimerHandle;
 	UFUNCTION(Server, Reliable)
 	void RollDiceOnServer(ADiceSprite* DiceToRoll);
 
-private:
-	ADiceSprite* Dice1 = nullptr;
-	ADiceSprite* Dice2 = nullptr;
+	UFUNCTION(NetMulticast, Reliable)
+	void StopLoop();
 
+private:
 	virtual void BeginPlay() override;
 	AGiti* GitiGrabbed = nullptr;
 	void MouseGrabGiti(float value);
